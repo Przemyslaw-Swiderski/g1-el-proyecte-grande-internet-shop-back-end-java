@@ -1,0 +1,54 @@
+### Developers
+
+GET localhost:8081/api/v1/developers
+
+###
+
+GET localhost:8080/api/v1/developers
+Authorization: Bearer {{auth-token}}
+
+### Auth
+
+POST localhost:8081/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "user@mail.com",
+  "password": "usersecret"
+}
+
+> {% client.global.set("auth-token", response.body.token); %}
+
+### login ok:
+
+POST localhost:8081/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "admin@mail.com",
+  "password": "adminsecret"
+}
+
+> {% client.global.set("auth-token", response.body.token); %}
+
+### Register
+
+POST localhost:8081/api/v1/register
+Content-Type: application/json
+
+{
+  "email": "new@gmail.com",
+  "password": "bardzotajne"
+}
+
+### Log in
+
+POST localhost:8080/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "new@gmail.com",
+  "password": "bardzotajne"
+}
+
+> {% client.global.set("auth-token", response.body.token); %}
