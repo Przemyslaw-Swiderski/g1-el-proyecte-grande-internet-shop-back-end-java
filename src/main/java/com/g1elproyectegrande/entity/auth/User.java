@@ -20,11 +20,15 @@ public class User {
     private String email; // as email
     private String password; // as hash
 
+
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY) // cascade = CascadeType.ALL) // user czy users ? Cascade type ALL ?
+    private RefreshToken refreshToken;
 
     public void addRole(Role r) {
         roles.add(r);

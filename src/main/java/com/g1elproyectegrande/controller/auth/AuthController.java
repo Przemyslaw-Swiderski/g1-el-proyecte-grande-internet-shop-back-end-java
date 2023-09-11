@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.DEVELOPER_READ;
 import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.APP_ADMIN;
 
+
 @RestController
 @RequestMapping("/api/v1")
 public class AuthController {
@@ -34,7 +35,19 @@ public class AuthController {
         this.jwtTokenService = jwtTokenService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000") // Specify the allowed origin(s)
+//    @CrossOrigin(origins = "http://localhost:3000") // Specify the allowed origin(s)
+//    @PostMapping("/login")
+//    public JwtTokenResponse login(@Valid @RequestBody JwtTokenRequest jwtTokenRequest) {
+//        var authentication = new UsernamePasswordAuthenticationToken(
+//                jwtTokenRequest.username(), jwtTokenRequest.password()
+//        );
+//        authenticationManager.authenticate(authentication);
+//
+//        return new JwtTokenResponse(jwtTokenService.generateToken(jwtTokenRequest.username()));
+//    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public JwtTokenResponse login(@Valid @RequestBody JwtTokenRequest jwtTokenRequest) {
         var authentication = new UsernamePasswordAuthenticationToken(
@@ -42,8 +55,16 @@ public class AuthController {
         );
         authenticationManager.authenticate(authentication);
 
-        return new JwtTokenResponse(jwtTokenService.generateToken(jwtTokenRequest.username()));
+        // Assuming you have a User object representing the authenticated user
+        User user = userRepository.findByEmail(jwtTokenRequest.username()).orElseThrow();
+
+        // Generate both access and refresh tokens
+        String accessToken = jwtTokenService.generateAccessToken(jwtTokenRequest.username());
+        String refreshToken = jwtTokenService.generateRefreshToken(user);
+
+        return new JwtTokenResponse(accessToken, refreshToken);
     }
+
 
     //TODO ugly code
 //    1. register method should return some dto with new user data, including uuid

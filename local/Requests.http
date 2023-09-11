@@ -4,7 +4,7 @@ POST localhost:8081/api/v1/register
 Content-Type: application/json
 
 {
-  "email": "new11.admin1@mail.com",
+  "email": "new1.admin@mail.com",
   "password": "top!secret1"
 }
 
@@ -28,8 +28,8 @@ POST localhost:8081/api/v1/login
 Content-Type: application/json
 
 {
-  "username": "new.admin@mail.com",
-  "password": "top!secret"
+  "username": "new1.admin@mail.com",
+  "password": "top!secret1"
 }
 
 > {% client.global.set("auth-token", response.body.token); %}
