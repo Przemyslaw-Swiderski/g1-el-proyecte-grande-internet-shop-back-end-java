@@ -34,6 +34,8 @@ public class SpringSecurityConfig {
 
     public static final String DEVELOPER_READ = "DEVELOPER_READ";
     public static final String DEVELOPER_WRITE = "DEVELOPER_WRITE";
+    public static final String APP_ADMIN = "admin";
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint, JwtRequestFilter jwtRequestFilter) throws Exception {

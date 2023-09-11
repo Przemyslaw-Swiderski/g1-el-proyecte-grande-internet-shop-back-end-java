@@ -1,0 +1,42 @@
+### register
+
+POST localhost:8081/api/v1/register
+Content-Type: application/json
+
+{
+  "email": "new11.admin1@mail.com",
+  "password": "top!secret1"
+}
+
+
+### login ok 1:
+
+POST localhost:8081/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "admin@mail.com",
+  "password": "adminsecret"
+}
+
+> {% client.global.set("auth-token", response.body.token); %}
+
+
+### login ok 2:
+
+POST localhost:8081/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "new.admin@mail.com",
+  "password": "top!secret"
+}
+
+> {% client.global.set("auth-token", response.body.token); %}
+
+
+
+### Users
+
+GET localhost:8081/api/v1/users
+Authorization: Bearer {{auth-token}}

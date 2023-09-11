@@ -12,16 +12,15 @@ import com.g1elproyectegrande.service.auth.JwtTokenService;
 //import jakarta.validation.Valid;
 import javax.validation.Valid;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.DEVELOPER_READ;
+import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.APP_ADMIN;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -35,6 +34,7 @@ public class AuthController {
         this.jwtTokenService = jwtTokenService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000") // Specify the allowed origin(s)
     @PostMapping("/login")
     public JwtTokenResponse login(@Valid @RequestBody JwtTokenRequest jwtTokenRequest) {
         var authentication = new UsernamePasswordAuthenticationToken(
@@ -60,13 +60,14 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @CrossOrigin(origins = "http://localhost:3000") // Specify the allowed origin(s)
     @PostMapping("/register")
     public void register(@Valid @RequestBody UserRegistrationDto newUserDto) {
         User newUser = new User();
         newUser.setEmail(newUserDto.email());
         newUser.setPassword(passwordEncoder.encode(newUserDto.password()));
 
-        Role userRole = roleRepository.findByName(DEVELOPER_READ).get();
+        Role userRole = roleRepository.findByName(APP_ADMIN).get();
         newUser.addRole(userRole);
         userRole.addUser(newUser);
 
