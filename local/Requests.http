@@ -4,8 +4,8 @@ POST localhost:8081/api/v1/register
 Content-Type: application/json
 
 {
-  "email": "new1.admin@mail.com",
-  "password": "top!secret1"
+  "email": "admin@mail.com",
+  "password": "adminsecret"
 }
 
 

@@ -61,8 +61,9 @@ public class AuthController {
         // Generate both access and refresh tokens
         String accessToken = jwtTokenService.generateAccessToken(jwtTokenRequest.username());
         String refreshToken = jwtTokenService.generateRefreshToken(user);
+        String userEmail = user.getEmail();
 
-        return new JwtTokenResponse(accessToken, refreshToken);
+        return new JwtTokenResponse(accessToken, refreshToken, userEmail);
     }
 
 
