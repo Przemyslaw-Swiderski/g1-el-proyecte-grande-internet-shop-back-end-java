@@ -25,6 +25,7 @@ import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.APP_ADMIN;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     private AuthenticationManager authenticationManager;
@@ -47,7 +48,6 @@ public class AuthController {
 //    }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/login")
     public JwtTokenResponse login(@Valid @RequestBody JwtTokenRequest jwtTokenRequest) {
         var authentication = new UsernamePasswordAuthenticationToken(
@@ -61,6 +61,7 @@ public class AuthController {
         // Generate both access and refresh tokens
         String accessToken = jwtTokenService.generateAccessToken(jwtTokenRequest.username());
         String refreshToken = jwtTokenService.generateRefreshToken(user);
+//        String refreshToken = jwtTokenService.generateRefreshToken(jwtTokenRequest.username());
         String userEmail = user.getEmail();
 
         return new JwtTokenResponse(accessToken, refreshToken, userEmail);

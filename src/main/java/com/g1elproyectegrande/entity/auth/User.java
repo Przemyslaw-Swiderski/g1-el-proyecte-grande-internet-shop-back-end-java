@@ -17,6 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @EqualsAndHashCode.Include
+    @Column(unique = true)
     private String email; // as email
     private String password; // as hash
 

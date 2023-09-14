@@ -19,7 +19,7 @@ Content-Type: application/json
   "password": "adminsecret"
 }
 
-> {% client.global.set("auth-token", response.body.token); %}
+> {% client.global.set("auth-token", response.body.accessToken); %}
 
 
 ### login ok 2:
@@ -32,7 +32,7 @@ Content-Type: application/json
   "password": "top!secret1"
 }
 
-> {% client.global.set("auth-token", response.body.token); %}
+> {% client.global.set("auth-token", response.body.accessToken); %}
 
 
 
@@ -40,3 +40,24 @@ Content-Type: application/json
 
 GET localhost:8081/api/v1/users
 Authorization: Bearer {{auth-token}}
+
+### get products
+
+GET localhost:8081/api/v1/products
+Authorization: Bearer {{auth-token}}
+
+
+### add product
+
+POST localhost:8081/api/v1/products
+Authorization: Bearer {{auth-token}}
+Content-Type: application/json
+
+{
+  "title": "Rower gorski",
+  "description": "Górski rower MONGOOSE",
+  "image": "Zdjecie",
+  "price": 108.00
+}
+
+> {% client.global.set("auth-token", response.body.accessToken); %}
