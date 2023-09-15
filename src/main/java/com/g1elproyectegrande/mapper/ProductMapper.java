@@ -1,7 +1,10 @@
 package com.g1elproyectegrande.mapper;
 
+import com.g1elproyectegrande.controller.dto.IdNamePairDto;
 import com.g1elproyectegrande.controller.dto.ProductDto;
 import com.g1elproyectegrande.entity.Product;
+
+import java.util.List;
 
 public class ProductMapper {
 
@@ -11,8 +14,10 @@ public class ProductMapper {
                 entity.getTitle(),
                 entity.getDescription(),
                 entity.getImage(),
-                entity.getPrice()
-            );
+                entity.getPrice(),
+                mapProductsCategories(entity),
+                mapProductsSuppliers(entity)
+        );
         }
 
 
@@ -25,4 +30,18 @@ public class ProductMapper {
                 dto.price()
         );
     }
+
+    private static List<IdNamePairDto> mapProductsCategories(Product entity) {
+        return entity.getProductCategories().stream()
+                .map(pc -> new IdNamePairDto(pc.getId(), pc.getName()))
+                .toList();
+    }
+
+    private static List<IdNamePairDto> mapProductsSuppliers(Product entity) {
+        return entity.getProductSuppliers().stream()
+                .map(pc -> new IdNamePairDto(pc.getId(), pc.getName()))
+                .toList();
+    }
+
+
 }
