@@ -1,5 +1,6 @@
 package com.g1elproyectegrande.controller;
 
+import com.g1elproyectegrande.controller.dto.ProductDto;
 import com.g1elproyectegrande.entity.Product;
 import com.g1elproyectegrande.service.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> getAllProducts() {
+    public List<ProductDto> getAllProducts() {
         return productService.getAllProducts();
     }
 

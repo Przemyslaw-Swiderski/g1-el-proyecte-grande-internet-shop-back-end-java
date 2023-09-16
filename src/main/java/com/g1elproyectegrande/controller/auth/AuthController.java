@@ -8,18 +8,13 @@ import com.g1elproyectegrande.entity.auth.User;
 import com.g1elproyectegrande.repository.auth.RoleRepository;
 import com.g1elproyectegrande.repository.auth.UserRepository;
 import com.g1elproyectegrande.service.auth.JwtTokenService;
-
-//import jakarta.validation.Valid;
-import javax.validation.Valid;
-
-import lombok.extern.slf4j.Slf4j;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.DEVELOPER_READ;
 import static com.g1elproyectegrande.config.auth.SpringSecurityConfig.APP_ADMIN;
 
 

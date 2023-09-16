@@ -1,9 +1,7 @@
 package com.g1elproyectegrande.entity.auth;
 
-//import jakarta.persistence.*;
+import jakarta.persistence.*;
 import lombok.*;
-
-import javax.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;

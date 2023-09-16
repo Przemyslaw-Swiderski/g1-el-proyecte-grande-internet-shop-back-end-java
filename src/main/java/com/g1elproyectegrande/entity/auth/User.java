@@ -1,11 +1,13 @@
 package com.g1elproyectegrande.entity.auth;
 
-//import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -22,8 +24,9 @@ public class User {
     private String password; // as hash
 
 
+
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
+    @JoinTable(name = "joining_users_and_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();

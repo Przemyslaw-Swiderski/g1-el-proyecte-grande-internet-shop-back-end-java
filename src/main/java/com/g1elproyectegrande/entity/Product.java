@@ -1,60 +1,51 @@
 package com.g1elproyectegrande.entity;
 
-import com.g1elproyectegrande.controller.dto.ProductCategoryDto;
-import com.g1elproyectegrande.entity.ProductCategory;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import lombok.*;
-import org.hibernate.type.UrlType;
-
-import javax.persistence.*;
 import java.math.BigDecimal;
-import java.net.URL;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor //Default constructor for JPA
-@Entity
-@ToString
+@Entity(name="Product")
 @Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @EqualsAndHashCode.Include
+    @Column(unique = true)
     private String title;
     private String description;
     private String image;
     private BigDecimal price;
-    @ManyToMany (cascade = {
+
+    @ManyToMany(cascade = {
             CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "products_joining_categories",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+            CascadeType.MERGE}
     )
-    private Set<ProductCategory> productCategories = new HashSet<>();
 
-    @ManyToMany (cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    @JoinTable(name = "products_joining_suppliers",
+//    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+
+    @JoinTable(name = "joining_products_and_categories",
             joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "supplier_id")
-    )
-    private Set<ProductSupplier> productSuppliers = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<ProductCategory> productCategories = new HashSet<>(); //!!!!!!???????
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProductProducer productProducer;
 
 
-    public Product(long id, String title, String description, String image, BigDecimal price) {
+    public Product(Long id, String title, String description, String image, BigDecimal price) {
         this.title = title;
         this.description = description;
         this.image = image;
         this.price = price;
     }
-
-
 }
