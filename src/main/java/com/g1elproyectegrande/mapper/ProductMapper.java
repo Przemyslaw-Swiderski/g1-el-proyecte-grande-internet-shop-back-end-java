@@ -5,6 +5,7 @@ import com.g1elproyectegrande.controller.dto.ProductDto;
 import com.g1elproyectegrande.entity.Product;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -17,7 +18,8 @@ public class ProductMapper {
                 entity.getDescription(),
                 entity.getImage(),
                 entity.getPrice(),
-                mapProductsCategories(entity)
+                mapProductsCategories(entity),
+                mapProductProducer(entity)
         );
         }
 
@@ -38,11 +40,12 @@ public class ProductMapper {
                 .toList();
     }
 
-//    private static List<IdNamePairDto> mapProductsSuppliers(Product entity) {
-//        return entity.getProductProducer().stream()
-//                .map(p -> new IdNamePairDto(p.getId(), p.getName()))
-//                .toList();
-//    }
+    private static List<IdNamePairDto> mapProductProducer(Product entity) {
+        IdNamePairDto idNamePair = new IdNamePairDto(entity.getProductProducer().getId(), entity.getProductProducer().getName());
+        List<IdNamePairDto> idNamePairDto = new ArrayList<>();
+        idNamePairDto.add(idNamePair);
+        return idNamePairDto;
+    }
 
 
 }

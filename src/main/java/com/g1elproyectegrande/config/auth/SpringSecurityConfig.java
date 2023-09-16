@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,6 +22,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.Collection;
 
@@ -47,14 +49,24 @@ public class SpringSecurityConfig {
 //
 //        return http.build();
 
-
         http
-                .authorizeHttpRequests((authorize) -> authorize
+                .csrf().disable()
+                .authorizeRequests()
                 .requestMatchers("/api/v1/login", "/api/v1/register").permitAll()
                 .anyRequest().authenticated()
-                );
+                .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+
+//        http
+//                .authorizeHttpRequests((authorize) -> authorize
+//                .requestMatchers("/api/v1/login", "/api/v1/register").permitAll()
+//                .anyRequest().authenticated()
+//                );
+//
+//        return http.build();
 
 
     }

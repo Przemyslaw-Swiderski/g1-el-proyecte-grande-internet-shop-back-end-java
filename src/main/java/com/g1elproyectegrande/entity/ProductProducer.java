@@ -25,11 +25,14 @@ public class ProductProducer {
 //            cascade = CascadeType.ALL,
 //            orphanRemoval = true
 //    )
-
     @OneToMany(
             mappedBy = "productProducer"
     )
-//    private List<PostComment> comments = new ArrayList<>();
-//    private List<Product> products = new ArrayList<>();
+//    private List<Product> products = new ArrayList<>(); //tak jest według Vlada
     private Set<Product> products = new HashSet<>();
+
+    public ProductProducer(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

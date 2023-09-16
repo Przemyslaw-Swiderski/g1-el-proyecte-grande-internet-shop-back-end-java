@@ -21,6 +21,10 @@ public class ProductCategory {
     @ManyToMany(mappedBy = "productCategories")
     private Set<Product> products = new HashSet<>();
 
+    public ProductCategory(Long id, String name) {
+    }
+
+
 //    public void addProduct(Product p) {
 //        products.add(p);
 //    }

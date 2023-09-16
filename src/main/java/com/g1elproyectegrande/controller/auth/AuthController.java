@@ -78,7 +78,7 @@ public class AuthController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @CrossOrigin(origins = "http://localhost:3000") // Specify the allowed origin(s)
+
     @PostMapping("/register")
     public void register(@Valid @RequestBody UserRegistrationDto newUserDto) {
         User newUser = new User();

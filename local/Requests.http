@@ -19,7 +19,9 @@ Content-Type: application/json
   "password": "adminsecret"
 }
 
-> {% client.global.set("auth-token", response.body.accessToken); %}
+> {% client.global.set("auth-token", response.body.accessToken,
+    "refresh-token", response.body.refreshToken); %}
+
 
 
 ### login ok 2:
@@ -61,3 +63,9 @@ Content-Type: application/json
 }
 
 > {% client.global.set("auth-token", response.body.accessToken); %}
+
+
+### get categories
+
+GET localhost:8081/api/v1/categories
+Authorization: Bearer {{auth-token}}

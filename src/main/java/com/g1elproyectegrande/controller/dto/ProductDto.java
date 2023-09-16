@@ -9,7 +9,8 @@ public record ProductDto(
         String description,
         String image,
         BigDecimal price,
-        List<IdNamePairDto> productCategories
+        List<IdNamePairDto> productCategories,
+        List<IdNamePairDto> productProducer
 
 ) {
 

@@ -36,7 +36,7 @@ public class Product {
     @JoinTable(name = "joining_products_and_categories",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<ProductCategory> productCategories = new HashSet<>(); //!!!!!!???????
+    private Set<ProductCategory> productCategories = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private ProductProducer productProducer;
