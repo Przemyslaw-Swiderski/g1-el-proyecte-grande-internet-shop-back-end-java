@@ -52,7 +52,7 @@ public class SpringSecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/api/v1/login", "/api/v1/register").permitAll()
+                .requestMatchers("/api/v1/login", "/api/v1/register", "/api/v1/products", "/api/v1/categories", "/api/v1/producers").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

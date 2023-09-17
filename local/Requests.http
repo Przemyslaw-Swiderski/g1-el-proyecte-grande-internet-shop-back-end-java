@@ -32,19 +32,16 @@ Authorization: Bearer {{auth-token}}
 ### get products
 
 GET localhost:8081/api/v1/products
-Authorization: Bearer {{auth-token}}
 
 
 ### get categories
 
 GET localhost:8081/api/v1/categories
-Authorization: Bearer {{auth-token}}
 
 
 ### get producers
 
 GET localhost:8081/api/v1/producers
-Authorization: Bearer {{auth-token}}
 
 
 

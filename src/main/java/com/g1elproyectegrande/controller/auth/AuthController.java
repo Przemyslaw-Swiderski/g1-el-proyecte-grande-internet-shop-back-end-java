@@ -58,8 +58,10 @@ public class AuthController {
         String refreshToken = jwtTokenService.generateRefreshToken(user);
 //        String refreshToken = jwtTokenService.generateRefreshToken(jwtTokenRequest.username());
         String userEmail = user.getEmail();
+        String userName = user.getName();
+        String userSurname = user.getSurname();
 
-        return new JwtTokenResponse(accessToken, refreshToken, userEmail);
+        return new JwtTokenResponse(accessToken, refreshToken, userEmail, userName, userSurname);
     }
 
 

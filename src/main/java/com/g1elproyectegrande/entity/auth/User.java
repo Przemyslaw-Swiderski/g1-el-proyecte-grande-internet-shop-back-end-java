@@ -22,7 +22,8 @@ public class User {
     @Column(unique = true)
     private String email; // as email
     private String password; // as hash
-
+    private String name;
+    private String surname;
 
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
