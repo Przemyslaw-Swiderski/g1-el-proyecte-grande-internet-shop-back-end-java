@@ -22,6 +22,8 @@ public class ProductCategory {
     private Set<Product> products = new HashSet<>();
 
     public ProductCategory(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
 

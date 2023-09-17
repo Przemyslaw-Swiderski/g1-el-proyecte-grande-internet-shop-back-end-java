@@ -5,7 +5,7 @@ import java.util.List;
 
 public record ProductDto(
         Long id,
-        String title,
+        String name,
         String description,
         String image,
         BigDecimal price,

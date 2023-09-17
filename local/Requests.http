@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 
-### login ok 1:
+### login ok:
 
 POST localhost:8081/api/v1/login
 Content-Type: application/json
@@ -24,20 +24,6 @@ Content-Type: application/json
 
 
 
-### login ok 2:
-
-POST localhost:8081/api/v1/login
-Content-Type: application/json
-
-{
-  "username": "new1.admin@mail.com",
-  "password": "top!secret1"
-}
-
-> {% client.global.set("auth-token", response.body.accessToken); %}
-
-
-
 ### Users
 
 GET localhost:8081/api/v1/users
@@ -49,6 +35,19 @@ GET localhost:8081/api/v1/products
 Authorization: Bearer {{auth-token}}
 
 
+### get categories
+
+GET localhost:8081/api/v1/categories
+Authorization: Bearer {{auth-token}}
+
+
+### get producers
+
+GET localhost:8081/api/v1/producers
+Authorization: Bearer {{auth-token}}
+
+
+
 ### add product
 
 POST localhost:8081/api/v1/products
@@ -56,16 +55,12 @@ Authorization: Bearer {{auth-token}}
 Content-Type: application/json
 
 {
-  "title": "Rower gorski",
-  "description": "Górski rower MONGOOSE",
-  "image": "Zdjecie",
-  "price": 108.00
+  "name": "Rower górski SCOTT",
+  "description": "Górski rower SCOTT",
+  "image": "ZdjecieSCOTT",
+  "price": 128.00,
+  "productCategories": [],
+  "productProducer": null
 }
 
 > {% client.global.set("auth-token", response.body.accessToken); %}
-
-
-### get categories
-
-GET localhost:8081/api/v1/categories
-Authorization: Bearer {{auth-token}}

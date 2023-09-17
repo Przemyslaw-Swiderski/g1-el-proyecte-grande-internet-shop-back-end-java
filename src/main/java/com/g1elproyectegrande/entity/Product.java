@@ -21,7 +21,7 @@ public class Product {
     private Long id;
     @EqualsAndHashCode.Include
     @Column(unique = true)
-    private String title;
+    private String name;
     private String description;
     private String image;
     private BigDecimal price;
@@ -42,8 +42,8 @@ public class Product {
     private ProductProducer productProducer;
 
 
-    public Product(Long id, String title, String description, String image, BigDecimal price) {
-        this.title = title;
+    public Product(Long id, String name, String description, String image, BigDecimal price) {
+        this.name = name;
         this.description = description;
         this.image = image;
         this.price = price;
