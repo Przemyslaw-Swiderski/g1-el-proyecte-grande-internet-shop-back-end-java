@@ -33,7 +33,6 @@ Authorization: Bearer {{auth-token}}
 
 GET localhost:8081/api/v1/products
 
-
 ### get categories
 
 GET localhost:8081/api/v1/categories

@@ -38,37 +38,18 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationEntryPoint authenticationEntryPoint, JwtRequestFilter jwtRequestFilter) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/api/v1/login", "/api/v1/register").permitAll()
-//                .anyRequest().authenticated()
-//                .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
-//                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//
-//        return http.build();
-
         http
-                .csrf().disable()
+                .csrf((csrf) -> csrf.disable())
                 .authorizeRequests()
-                .requestMatchers("/api/v1/login", "/api/v1/register", "/api/v1/products", "/api/v1/categories", "/api/v1/producers").permitAll()
-                .anyRequest().authenticated()
+//                .requestMatchers("/api/v1/login", "/api/v1/register", "/api/v1/products", "/api/v1/categories", "/api/v1/producers").permitAll()
+              // można tutaj wyspecyfikować czy get czy post
+                .requestMatchers("/api/v1/login", "/api/v1/register").permitAll()
+//                .anyRequest().authenticated()
                 .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-
-//        http
-//                .authorizeHttpRequests((authorize) -> authorize
-//                .requestMatchers("/api/v1/login", "/api/v1/register").permitAll()
-//                .anyRequest().authenticated()
-//                );
-//
-//        return http.build();
-
-
     }
 
     @Bean
