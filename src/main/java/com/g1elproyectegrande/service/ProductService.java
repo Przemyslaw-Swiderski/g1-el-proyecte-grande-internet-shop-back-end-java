@@ -3,6 +3,7 @@ package com.g1elproyectegrande.service;
 import com.g1elproyectegrande.controller.dto.ProductDto;
 import com.g1elproyectegrande.entity.Product;
 import com.g1elproyectegrande.mapper.ProductMapper;
+import com.g1elproyectegrande.repository.ProductCategoryRepository;
 import com.g1elproyectegrande.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,13 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    private final ProductCategoryRepository productCategoryRepository;
+
     private final ProductMapper productMapper;
 
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper, ProductCategoryRepository productCategoryRepository) {
         this.productRepository = productRepository;
+        this.productCategoryRepository = productCategoryRepository;
         this.productMapper = productMapper;
     }
 
@@ -28,6 +32,20 @@ public class ProductService {
 
     public Product addProduct(Product product){
         return productRepository.save(product);
+    }
+
+    public List<ProductDto> getProductsByCategoryIds(List<Long> categoryIds) {
+//        List<ProductCategory> categories = productCategoryRepository.findAllById(categoryIds);
+//        List<Long> categories = categoryIds;
+//        if (!categories.isEmpty()) {
+//        if (!categoryIds.isEmpty()) {
+            return productRepository.findByCategoryIds(categoryIds).stream()
+                    .map(productMapper :: mapProductEntityToDto)
+                    .toList();
+
+//            return productRepository.findByCategoryIds(categoryIds);
+//        }
+//        return Collections.emptyList();
     }
 }
 

@@ -4,7 +4,7 @@ POST localhost:8081/api/v1/register
 Content-Type: application/json
 
 {
-  "email": "admin@mail.com",
+  "email": "user@mail.com",
   "password": "adminsecret"
 }
 
@@ -32,6 +32,13 @@ Authorization: Bearer {{auth-token}}
 ### get products
 
 GET localhost:8081/api/v1/products
+Authorization: Bearer {{auth-token}}
+
+
+### get products
+
+GET localhost:8081/api/v1/products
+
 
 ### get categories
 
@@ -60,3 +67,13 @@ Content-Type: application/json
 }
 
 > {% client.global.set("auth-token", response.body.accessToken); %}
+
+
+### get products by categories
+
+POST http://localhost:8081/api/v1/products/bycategories
+Content-Type: application/json
+
+{
+  "categoryIds": [1, 3]
+}
