@@ -9,7 +9,7 @@ Content-Type: application/json
 }
 
 
-### login ok:
+### login admin:
 
 POST localhost:8081/api/v1/login
 Content-Type: application/json
@@ -24,16 +24,26 @@ Content-Type: application/json
 
 
 
-### Users
+### login user:
+
+POST localhost:8081/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "user@mail.com",
+  "password": "adminsecret"
+}
+
+> {% client.global.set("auth-token", response.body.accessToken,
+        "refresh-token", response.body.refreshToken); %}
+
+
+
+### GET users
 
 GET localhost:8081/api/v1/users
 Authorization: Bearer {{auth-token}}
 
-
-
-### get products
-
-GET localhost:8081/api/v1/products
 
 
 ### get categories
@@ -71,6 +81,13 @@ Content-Type: application/json
 }
 
 > {% client.global.set("auth-token", response.body.accessToken); %}
+
+
+
+### get products
+
+GET localhost:8081/api/v1/products
+
 
 
 ### get products by categories by POST method
