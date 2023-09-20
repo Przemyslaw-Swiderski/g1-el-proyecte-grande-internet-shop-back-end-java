@@ -65,7 +65,7 @@ public class SpringSecurityConfig {
                                         "/api/v1/products",
                                         "/api/v1/products/*",
 //                                        "/api/v1/products/bycategories",
-//                                        "/api/v1/products/by-categories/**",
+//                                        "/api/v1/products/by-categories/",
                                         "/error"
                                 ).permitAll() // czy można tutaj wyspecyfikować czy get czy post ?
                                 .requestMatchers(
