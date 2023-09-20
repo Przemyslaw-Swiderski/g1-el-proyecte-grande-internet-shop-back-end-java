@@ -29,6 +29,13 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+
+    @GetMapping("/products/by-categories")
+    public List<ProductDto> getAllProductsByCategoriesByGetMethod(@RequestParam List<Long> categoryIds) {
+        List<ProductDto> products = productService.getProductsByCategoryIds(categoryIds);
+        return products;
+    }
+
     @PostMapping("/products/bycategories")
     public List<ProductDto> getAllProductsByCategories(@RequestBody Map<String, List<Long>> requestBody) {
         List<Long> selectedCategoryIds = requestBody.get("categoryIds");
