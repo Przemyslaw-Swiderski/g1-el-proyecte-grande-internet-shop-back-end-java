@@ -104,3 +104,9 @@ Content-Type: application/json
 ### get products by categories by GET method
 
 GET http://localhost:8081/api/v1/products/by-categories?categoryIds=1&categoryIds=2&categoryIds=3
+
+
+
+### get products by categories by GET method + name category Param
+
+GET http://localhost:8081/api/v1/products/products-by-param?category=Rowery

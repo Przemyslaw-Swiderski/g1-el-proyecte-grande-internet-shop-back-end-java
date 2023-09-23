@@ -5,8 +5,10 @@ import com.g1elproyectegrande.entity.Product;
 import com.g1elproyectegrande.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 //@PermitAll //stsujemy bez configa, żeby się nie mieszało
@@ -36,9 +38,19 @@ public class ProductController {
         return products;
     }
 
-    @PostMapping("/products/bycategories")
-    public List<ProductDto> getAllProductsByCategories(@RequestBody Map<String, List<Long>> requestBody) {
-        List<Long> selectedCategoryIds = requestBody.get("categoryIds");
+    @PostMapping("/products-by-param")
+//    @GetMapping(params="category" )
+    public List<ProductDto> getAllProductsByCategoriesByGetMethodAnotherMethod(@RequestParam ("category") String categoryName) {
+        List<ProductDto> products = productService.getProductsByCategoryName(categoryName);
+        return products;
+    }
+
+    @GetMapping("/products/by-get-by-categories")
+    public List<ProductDto> getAllProductsByCategories(@RequestHeader("Categories") String categoryIds) {
+        // Split the comma-separated string into a list of Long
+        List<Long> selectedCategoryIds = Arrays.stream(categoryIds.split(","))
+                .map(Long::valueOf)
+                .collect(Collectors.toList());
         List<ProductDto> products = productService.getProductsByCategoryIds(selectedCategoryIds);
         return products;
     }
@@ -47,4 +59,14 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product) {
         return productService.addProduct(product);
     }
+
+
+
+    @PostMapping("/products/bycategories")
+    public List<ProductDto> getAllProductsByCategoriesByPostMethod(@RequestBody Map<String, List<Long>> requestBody) {
+        List<Long> selectedCategoryIds = requestBody.get("categoryIds");
+        List<ProductDto> products = productService.getProductsByCategoryIds(selectedCategoryIds);
+        return products;
+    }
+
 }

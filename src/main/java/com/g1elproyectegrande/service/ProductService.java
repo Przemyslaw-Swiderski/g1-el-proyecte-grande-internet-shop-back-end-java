@@ -47,6 +47,13 @@ public class ProductService {
 //        }
 //        return Collections.emptyList();
     }
+
+
+    public List<ProductDto> getProductsByCategoryName(String categoryName) {
+        return productRepository.findByCategoryName(categoryName).stream()
+                .map(productMapper :: mapProductEntityToDto)
+                .toList();
+    }
 }
 
 // Other methods for CRUD operations
