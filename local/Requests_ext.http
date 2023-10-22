@@ -1,0 +1,49 @@
+### signup:
+
+POST http://178.183.200.211:8895/api/auth/signup
+Content-Type: application/json
+
+{
+  "username": "przemek7",
+  "email": "przemek7@mail.com",
+  "password": "adminsecret7",
+  "firstname": "Przemysław",
+  "surname": "Świderski",
+  "role": ["admin", "user"]
+}
+
+### singin:
+
+POST http://178.183.200.211:8895/api/auth/signin
+Content-Type: application/json
+
+{
+  "username": "przemek",
+  "password": "adminsecret"
+}
+
+> {% client.global.set("auth-token", response.body.accessToken,
+        "refresh-token", response.body.refreshToken); %}
+
+
+
+### refresh token:
+
+POST http://178.183.200.211:8895/api/auth/refreshtoken
+Content-Type: application/json
+
+{
+  "refreshToken": "bd8dc0ac-82d0-4890-a786-f8de8d39b005"
+}
+
+> {% client.global.set("auth-token", response.body.accessToken,
+        "refresh-token", response.body.refreshToken); %}
+
+
+### signout:
+
+POST http://178.183.200.211:8895/api/auth/signout
+Authorization: Bearer {{auth-token}}
+
+
+

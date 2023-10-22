@@ -11,8 +11,8 @@
     <groupId>com.smartdigiflow</groupId>
     <artifactId>G1ElProyecteGrandeBackEndJava</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SmartDigiFlowBackEndJava</name>
-    <description>SmartDigiFlowBackEndJava</description>
+    <name>G1ElProyecteGrandeBackEndJava</name>
+    <description>G1ElProyecteGrandeBackEndJava</description>
     <properties>
         <java.version>17</java.version>
         <jjwt.version>0.11.5</jjwt.version>
@@ -49,8 +49,6 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
-
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
@@ -72,9 +70,6 @@
             <artifactId>jjwt-gson</artifactId>
             <version>${jjwt.version}</version>
         </dependency>
-
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -85,10 +80,6 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-
-
-
         <dependency>
             <groupId>io.github.dvgaba</groupId>
             <artifactId>easy-random-core</artifactId>
