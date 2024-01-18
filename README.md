@@ -3,6 +3,8 @@
 ## Overview
 
 This application is a template for backend server for internet shop development. It is basing on Springboot and Hibernate plus PostgreSQL database.
+Here it is possible to look on a template of frontend application working with below mentioned backend:
+[G1 El Proyecte Grande Internet Shop Frontend](https://github.com/Przemyslaw-Swiderski/g1_el_proyecte_grande_front_end_react)
 
 ## How to Use
 ### Required Software
